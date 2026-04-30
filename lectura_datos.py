@@ -1,8 +1,8 @@
 import csv
 
-#Clase para guardar los datos de encuestado
+# Clase para guardar los datos de cada encuestado
 class Encuestado:
-    #Creación del constructor
+    # Constructor de la clase (se ejecuta cuando creamos un objeto)
     def __init__(self, d):
         self.id = d["id"]
         self.comida_preferida = d["preferencias"]["comida_preferida"]
@@ -12,46 +12,70 @@ class Encuestado:
         self.servicio = d["experiencia"]["servicio"]
         self.recomendacion = d["nps"]["recomendacion"]
 
-#Función para transformar filas en diccionarios anidados
+# Función para transformar cada fila del CSV en un diccionario organizado
 def recorrer_datos(fila):
-        #Retornamos el diccionario
-        return {
-            "id": int(fila["id"]),
-            "preferencias": {
-                "comida_preferida": fila["comida_preferida"],
-                "frecuencia": fila["frecuencia_consumo"],
-            },
-            "consumo":{
-                "gasto": float(fila["gasto_promedio"])
-            },
-            "experiencia": {
-                "producto": int(fila["satisfaccion_producto"]),
-                "servicio": int(fila["satisfaccion_servicio"]),
-                "tiempo de entrega": fila["tiempo_entrega"],
-                "precio": fila["precio_percepcion"],
-            },
-            "nps": {
-                "recomendacion": int(fila["recomendaria_nps"]),
-                "volveria": fila["volveria_comprar"].strip().lower() in ["sí", "si"],
-                "general": int(fila["calificacion_general"])
-            }
+    # Retornamos un diccionario con estructura ordenada
+    return {
+        # Convertimos el id a entero
+        "id": int(fila["id"]),
+        
+        # Agrupamos datos de preferencias
+        "preferencias": {
+            "comida_preferida": fila["comida_preferida"],  # texto
+            "frecuencia": fila["frecuencia_consumo"],      # texto
+        },
+        
+        # Agrupamos datos de consumo
+        "consumo": {
+            "gasto": float(fila["gasto_promedio"])  # convertimos a decimal
+        },
+        
+        # Agrupamos datos de experiencia
+        "experiencia": {
+            "producto": int(fila["satisfaccion_producto"]),  # entero
+            "servicio": int(fila["satisfaccion_servicio"]),  # entero
+            "tiempo de entrega": fila["tiempo_entrega"],     # texto
+            "precio": fila["precio_percepcion"],             # texto
+        },
+        
+        # Agrupamos datos de NPS
+        "nps": {
+            "recomendacion": int(fila["recomendaria_nps"]),  # entero
+            
+            # Convertimos "Sí"/"No" a True o False
+            "volveria": fila["volveria_comprar"].strip().lower() in ["sí", "si"],
+            
+            "general": int(fila["calificacion_general"]) # entero
         }
+    }
 
-#Funcion para leer el archivo CSV
+# Función para leer el archivo CSV
 def leer_datos(nombre_archivo):
+    # Lista donde se guardarán todos los encuestados
     lista_encuestados = []
+    
     try:
+        # Abrimos el archivo en modo lectura con codificación latin-1
         with open(nombre_archivo, mode='r', encoding='latin-1') as archivo:
+            
+            # DictReader convierte cada fila en un diccionario automáticamente
             lector = csv.DictReader(archivo)
 
+            # Recorremos cada fila del archivo
             for fila in lector:
 
+                # Transformamos la fila en un diccionario estructurado
                 registro = recorrer_datos(fila)
 
+                # Creamos un objeto de tipo Encuestado usando ese diccionario
                 encuestado = Encuestado(registro)
 
+                # Guardamos el objeto en la lista
                 lista_encuestados.append(encuestado)
 
+    # Si el archivo no existe, mostramos un error
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo {nombre_archivo}")
+    
+    # Retornamos la lista de encuestados ya procesada
     return lista_encuestados
