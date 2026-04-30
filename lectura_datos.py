@@ -55,7 +55,7 @@ def recorrer_datos(fila):
 
 # Función para leer el archivo CSV
 def leer_datos(nombre_archivo):
-    # Lista donde se guardarán todos los encuestados
+    # Uso de listas para almacenar los 20,000 registros.
     lista_encuestados = []
     
     try:
