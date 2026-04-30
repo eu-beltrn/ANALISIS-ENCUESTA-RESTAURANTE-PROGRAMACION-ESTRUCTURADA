@@ -5,8 +5,11 @@
 # ==============================================================================
 # REPORTES 6 AL 10 - Nicole
 # ==============================================================================
+#Definimos la clase que se encargará de procesar toda la información
 class AnalizadorEncuesta:
+    # El constructor recibe la lista de objetos que creamos al leer el CSV
     def __init__(self, lista_objetos):
+        
         self.encuestados = lista_objetos # Esta es la lista 'datos' del main
 
     def reporte_6(self):
