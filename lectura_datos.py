@@ -13,6 +13,8 @@ class Encuestado:
         self.recomendacion = d["nps"]["recomendacion"]
         self.calificacion_general = d["nps"]["general"]
         self.precio = d["experiencia"]["precio"]
+        self.tiempo_entrega = d["experiencia"]["tiempo de entrega"] 
+        self.volveria = d["nps"]["volveria"]
 
 # Función para transformar cada fila del CSV en un diccionario organizado
 def recorrer_datos(fila):
