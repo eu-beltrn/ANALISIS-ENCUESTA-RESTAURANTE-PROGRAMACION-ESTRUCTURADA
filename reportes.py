@@ -142,3 +142,33 @@ class AnalizadorEncuesta:
             mejor_comida = comida
     
         return mejor_comida
+    
+    # Reporte 17. Comida con menor satisfacción promedio.
+    def comida_menor_satisfaccion(self):
+    
+        datos_comidas = {}
+        
+        # Recorremos los encuestados
+        for p in self.encuestados:
+            
+            comida = p.comida_preferida
+            satisfaccion = (p.producto + p.servicio) / 2
+            
+            if comida not in datos_comidas:
+                datos_comidas[comida] = [0, 0]  # suma, cantidad
+            
+            datos_comidas[comida][0] += satisfaccion
+            datos_comidas[comida][1] += 1
+        
+        # Buscar la comida con menor promedio
+        peor_comida = ""
+        peor_promedio = float("inf")
+        
+        for comida, valores in datos_comidas.items():
+            promedio = valores[0] / valores[1]
+            
+            if promedio < peor_promedio:
+                peor_promedio = promedio
+                peor_comida = comida
+        
+        return peor_comida

@@ -78,6 +78,10 @@ print("\n" + "="*70)
 print("REPORTES 16 - 20 (Eunice)".center(70,"-"))
 print("="*70)
 
-# Reporte 16
+# Reporte 16. Comida con mejor satisfacción promedio
 print("\n16. Comida con mejor satisfacción promedio")
 print(analizador.comida_mejor_satisfaccion())
+
+# Reporte 17. Comida con menor satisfacción promedio.
+print("\n17. Comida con menor satisfacción promedio")
+print(analizador.comida_menor_satisfaccion())
