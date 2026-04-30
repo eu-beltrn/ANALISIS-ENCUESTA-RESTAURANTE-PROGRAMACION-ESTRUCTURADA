@@ -16,6 +16,22 @@ print("\n" + "="*70)
 print("REPORTES 1 - 5 (Karla)".center(70,"-"))
 print("="*70)
 
+# Reporte 1
+print("1. Total de encuestados:", analizador.total_encuestados())
+
+# Reporte 2
+print("2. Comida más preferida:", analizador.comida_mas_preferida())
+
+# Reporte 3
+print("3. Cantidad por tipo de comida:")
+for comida, total in analizador.cantidad_por_comida().items():
+    print(f"   - {comida}: {total}")
+
+# Reporte 4
+print("4. Frecuencia de consumo más común:", analizador.frecuencia_mas_comun())
+
+# Reporte 5
+print(f"5. Promedio de gasto general: ${analizador.promedio_gasto_general():.2f}")
 
 # ==============================================================================
 # REPORTES 6 AL 10 - Nicole

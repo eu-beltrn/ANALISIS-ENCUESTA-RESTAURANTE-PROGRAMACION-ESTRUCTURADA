@@ -23,7 +23,26 @@ class AnalizadorEncuesta:
 # REPORTES 1 AL 5 - Karla
 # ==============================================================================
 
+    def total_encuestados(self):
+        return len(self.encuestados)
 
+    def comida_mas_preferida(self):
+        lista = [e.comida_preferida for e in self.encuestados]
+        conteo = self._contar_elementos(lista)
+        return max(conteo, key=conteo.get)
+
+    def cantidad_por_comida(self):
+        lista = [e.comida_preferida for e in self.encuestados]
+        return self._contar_elementos(lista)
+
+    def frecuencia_mas_comun(self):
+        lista = [e.frecuencia for e in self.encuestados]
+        conteo = self._contar_elementos(lista)
+        return max(conteo, key=conteo.get)
+
+    def promedio_gasto_general(self):
+        total = sum(e.gasto for e in self.encuestados)
+        return total / len(self.encuestados)
 # ==============================================================================
 # REPORTES 6 AL 10 - Nicole
 # ==============================================================================
