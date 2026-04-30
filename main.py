@@ -85,3 +85,19 @@ print(analizador.comida_mejor_satisfaccion())
 # Reporte 17. Comida con menor satisfacción promedio.
 print("\n17. Comida con menor satisfacción promedio")
 print(analizador.comida_menor_satisfaccion())
+
+# Reporte 18. Relación entre precio percibido y recomendación.
+print("\n18. Relación entre precio y recomendación")
+for precio, promedio in analizador.relacion_precio_recomendacion().items():
+    print(f"   - {precio}: {promedio:.2f}")
+
+# Reporte 19. Relación entre tiempo de entrega y satisfacción.
+print("\n19. Relación entre tiempo de entrega y satisfacción")
+for tiempo, promedio in analizador.relacion_tiempo_satisfaccion().items():
+    print(f"   - {tiempo}: {promedio:.2f}")
+
+# Reporte 20. Perfil predominante del consumidor.
+print("\n20. Perfil predominante del consumidor")
+perfil = analizador.perfil_predominante()
+for clave, valor in perfil.items():
+    print(f"   - {clave}: {valor}")

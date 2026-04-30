@@ -172,3 +172,76 @@ class AnalizadorEncuesta:
                 peor_comida = comida
         
         return peor_comida
+    
+    # Reporte 18. Relación entre precio percibido y recomendación.
+    def relacion_precio_recomendacion(self):
+        
+        datos = {}
+        
+        for e in self.encuestados:
+            precio = e.precio
+            recomendacion = e.recomendacion
+            
+            if precio not in datos:
+                datos[precio] = [0, 0]  # suma, cantidad
+            
+            datos[precio][0] += recomendacion
+            datos[precio][1] += 1
+        
+        resultado = {}
+        
+        for precio, valores in datos.items():
+            resultado[precio] = valores[0] / valores[1]
+        
+        return resultado
+    
+    # Reporte 19. Relación entre tiempo de entrega y satisfacción.
+    def relacion_tiempo_satisfaccion(self):
+        
+        datos = {}
+        
+        for e in self.encuestados:
+            tiempo = e.tiempo_entrega
+            satisfaccion = (e.producto + e.servicio) / 2
+            
+            if tiempo not in datos:
+                datos[tiempo] = [0, 0]
+            
+            datos[tiempo][0] += satisfaccion
+            datos[tiempo][1] += 1
+        
+        resultado = {}
+        
+        for tiempo, valores in datos.items():
+            resultado[tiempo] = valores[0] / valores[1]
+        
+        return resultado
+    
+    # Reporte 20. Perfil predominante del consumidor.
+    def perfil_predominante(self):
+        
+        comidas = {}
+        frecuencias = {}
+        precios = {}
+        
+        for e in self.encuestados:
+            
+            # Contar comida
+            comidas[e.comida_preferida] = comidas.get(e.comida_preferida, 0) + 1
+            
+            # Contar frecuencia
+            frecuencias[e.frecuencia] = frecuencias.get(e.frecuencia, 0) + 1
+            
+            # Contar precio
+            precios[e.precio] = precios.get(e.precio, 0) + 1
+        
+        # Obtener el más frecuente
+        comida_top = max(comidas, key=comidas.get)
+        frecuencia_top = max(frecuencias, key=frecuencias.get)
+        precio_top = max(precios, key=precios.get)
+        
+        return {
+            "comida_preferida": comida_top,
+            "frecuencia": frecuencia_top,
+            "precio_percibido": precio_top
+        }
