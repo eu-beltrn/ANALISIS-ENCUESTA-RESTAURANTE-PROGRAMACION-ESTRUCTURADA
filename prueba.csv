@@ -1,5 +1,5 @@
 id,comida_preferida,frecuencia_consumo,gasto_promedio,satisfaccion_producto,satisfaccion_servicio,tiempo_entrega,precio_percepcion,recomendaria_nps,volveria_comprar,calificacion_general
-1,Pollo Frito,Diario,70,5,3,Aceptable,Bajo,3,S’,4
-2,Pizza,Semanal,122,0,4,R‡pido,Medio,8,No,4
-3,Hot Dogs,Diario,71,4,7,Lento,Medio,5,S’,5
+1,Pollo Frito,Diario,70,5,3,Aceptable,Bajo,3,Si,4
+2,Pizza,Semanal,122,0,4,Rï¿½pido,Medio,8,No,4
+3,Hot Dogs,Diario,71,4,7,Lento,Medio,5,Si,5
 4,Pizza,Semanal,153,6,5,Aceptable,Alto,1,No,4
